@@ -1,17 +1,14 @@
 try:
-    from moviepy import VideoFileClip
-except ImportError:
     from moviepy.editor import VideoFileClip
+except ImportError:
+    from moviepy import VideoFileClip
 
 from pydub import AudioSegment
 
 
 def compress_video(input_path, output_path):
 
-    uploaded_video = st.file_uploader(
-    "Upload Video",
-    type=["mp4", "mov", "avi"]
-)
+    video = VideoFileClip(input_path)
 
     video.write_videofile(
         output_path,
@@ -29,9 +26,6 @@ def trim_audio(input_path, output_path, start_ms, end_ms):
 
     trimmed_audio = audio[start_ms:end_ms]
 
-    trimmed_audio.export(
-        output_path,
-        format="mp3"
-    )
+    trimmed_audio.export(output_path, format="mp3")
 
     return "Audio Trimmed Successfully"
