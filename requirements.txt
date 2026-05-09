@@ -1,5 +1,5 @@
 streamlit==1.57.0
-moviepy==2.2.1
+moviepy
 pydub==0.25.1
 imageio
 imageio-ffmpeg
