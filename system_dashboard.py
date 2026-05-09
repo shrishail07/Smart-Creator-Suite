@@ -15,11 +15,8 @@ def plot_graph(data, title):
     fig, ax = plt.subplots()
 
     ax.plot(data)
-
     ax.set_title(title)
-
     ax.set_xlabel("Time")
-
     ax.set_ylabel("Usage %")
 
     return fig
