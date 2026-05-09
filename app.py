@@ -1,9 +1,9 @@
 import streamlit as st
 
-from modules.media_tools import compress_video, trim_audio
-from modules.backup_tool import backup_folder, compress_folder, restore_backup
-from modules.system_dashboard import get_system_stats, plot_graph
-from modules.file_watcher import start_watcher
+from media_tools import compress_video, trim_audio
+from backup_tool import backup_folder, compress_folder, restore_backup
+from system_dashboard import get_system_stats, plot_graph
+from file_watcher import start_watcher
 
 st.set_page_config(page_title="Smart Creator Suite", layout="wide")
 
