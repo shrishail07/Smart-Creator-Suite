@@ -3,17 +3,14 @@ try:
 except ImportError:
     from moviepy import VideoFileClip
 
-from pydub import AudioSegment
+import subprocess
 
 
 def compress_video(input_path, output_path):
 
     video = VideoFileClip(input_path)
 
-    video.write_videofile(
-        output_path,
-        bitrate="500k"
-    )
+    video.write_videofile(output_path, bitrate="500k")
 
     video.close()
 
@@ -22,10 +19,18 @@ def compress_video(input_path, output_path):
 
 def trim_audio(input_path, output_path, start_ms, end_ms):
 
-    audio = AudioSegment.from_file(input_path)
+    start_sec = start_ms / 1000
+    duration = (end_ms - start_ms) / 1000
 
-    trimmed_audio = audio[start_ms:end_ms]
+    command = [
+        "ffmpeg",
+        "-y",
+        "-i", input_path,
+        "-ss", str(start_sec),
+        "-t", str(duration),
+        output_path
+    ]
 
-    trimmed_audio.export(output_path, format="mp3")
+    subprocess.run(command)
 
     return "Audio Trimmed Successfully"
